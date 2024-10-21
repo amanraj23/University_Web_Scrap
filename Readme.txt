@@ -1,67 +1,41 @@
-# University Scraper
+NOTE: There are two python file which perform two different task.
 
-This script scrapes general information, course details, and scholarship data from a university website and saves the collected information into an Excel file.
+University Information Scraper
 
-## Prerequisites
+This project scrapes general information, courses, and scholarships (if available) from a university website and saves the data in an Excel file.
 
-Ensure you have the following Python libraries installed:
+Features:
 
-- `requests`
-- `beautifulsoup4`
-- `pandas`
-- `openpyxl`
+Scrapes university info like name, email, contact number, and address.
+Scrapes course details like course name, taught language, and fees.
+Saves data in an Excel file with separate sheets for university info, courses, and scholarships.
+Checks the website's robots.txt file to follow scraping rules.
+Requirements:
 
-You can install these dependencies using the following command:
 
-```sh
+Required libraries: Install by running:
+
 pip install requests beautifulsoup4 pandas openpyxl
-```
+How to Use:
 
-## How to Run the Script
+Download this project.
+In the script, change the university_url to the website you want to scrape.
+Run the script:
+python university_info_scraper.py
+The script checks the website’s robots.txt file to make sure scraping is allowed.
+If allowed, the script scrapes the data and saves it in university_Detail_data.xlsx.
+Main Files:
 
-1. **Clone or download the repository** containing this script.
-2. **Navigate** to the folder containing the script.
-3. **Run the script** using Python:
+university_info_scraper.py: Main script to scrape information.
+university_Detail_data.xlsx: The output file (created after running the script).
+Functions:
 
-   ```sh
-   python university_scraper.py
-   ```
+scrape_university_info(university_url): Scrapes university info.
+scrape_courses(university_url): Scrapes course details.
+save_to_excel(university_info, courses, scholarships): Saves data into an Excel file.
+check_robots_txt(website_url): Checks if scraping is allowed by reading robots.txt.
+is_allowed_to_scrape(path, disallowed_paths): Verifies if scraping a specific path is allowed.
+Note:
 
-## Script Overview
-
-The script performs the following actions:
-
-1. **Checks the `robots.txt` file** of the university website to determine if scraping is allowed.
-2. **Scrapes university general information**, such as name, email, contact number, and address.
-3. **Scrapes course details**, including course name, language, and tuition fees.
-4. **Saves the scraped data** into an Excel file (`university_data.xlsx`) with three sheets:
-   - University Info
-   - Courses
-   - Scholarships (currently left empty)
-
-## Important Notes
-
-- The script is set to scrape data from **Stanford University** (`https://www.stanford.edu/`).
-- Ensure that scraping is in compliance with the website's **terms of service**.
-- The script uses **rate limiting** with `time.sleep(1)` to avoid overwhelming the server.
-
-## Modifying the Target University
-
-To scrape a different university, update the `university_url` variable in the script:
-
-```python
-university_url = 'https://www.new-university.edu/'
-```
-
-## Output
-
-The script generates an Excel file named **`university_data.xlsx`** containing three sheets:
-
-- **University Info**: Contains general information about the university.
-- **Courses**: Contains details about the courses offered by the university.
-- **Scholarships**: Currently left empty, but can be modified to include scholarship information.
-
-## License
-
-This project is licensed under the MIT License.
-
+Always follow the rules in the website's robots.txt.
+Adjust the scraping functions for different websites, as the structure may vary.
